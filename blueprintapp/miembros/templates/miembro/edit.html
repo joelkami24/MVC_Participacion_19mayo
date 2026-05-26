@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-warning text-dark">
+                <h2 class="h5 mb-0">Editar Miembro</h2>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('bp_miembro.edit', id=miembro.id) }}" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Nombre:</label>
+                        <input type="text" class="form-control" name="nombre" value="{{ miembro.nombre }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Correo Electrónico:</label>
+                        <input type="email" class="form-control" name="email" value="{{ miembro.email }}" required>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ url_for('bp_miembro.index') }}" class="btn btn-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-warning text-dark fw-semibold">Actualizar Miembro</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

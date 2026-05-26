@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h2 text-dark">Listado de Tareas</h1>
+    <a href="{{ url_for('bp_tarea.create') }}" class="btn btn-success">
+        Nueva Tarea
+    </a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body p-0">
+        <table class="table table-hover table-striped mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col" class="ps-4">ID</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col" class="text-end pe-4">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in tareas %}
+                <tr>
+                    <td class="ps-4">{{ item.id }}</td>
+                    <td class="fw-semibold">{{ item.descripcion }}</td>
+                    <td>
+                        {% if item.completado %}
+                        <span class="badge bg-success">Completado</span>
+                        {% else %}
+                        <span class="badge bg-warning text-dark">Pendiente</span>
+                        {% endif %}
+                    </td>
+                    <td class="text-end pe-4">
+                        <a href="{{ url_for('bp_tarea.edit', id=item.id) }}" class="btn btn-sm btn-warning me-2">Editar</a>
+                        <a href="{{ url_for('bp_tarea.delete', id=item.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('¿Seguro que deseas eliminar esta tarea?')">Eliminar</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4" class="text-center py-4 text-muted">No hay tareas registradas.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

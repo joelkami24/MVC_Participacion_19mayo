@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h2 text-dark">Listado de Miembros</h1>
+    <a href="{{ url_for('bp_miembro.create') }}" class="btn btn-primary">
+        Nuevo Miembro
+    </a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body p-0">
+        <table class="table table-hover table-striped mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col" class="ps-4">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Correo Electrónico</th>
+                    <th scope="col" class="text-end pe-4">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in miembros %}
+                <tr>
+                    <td class="ps-4">{{ item.id }}</td>
+                    <td class="fw-semibold">{{ item.nombre }}</td>
+                    <td>{{ item.email }}</td>
+                    <td class="text-end pe-4">
+                        <a href="{{ url_for('bp_miembro.edit', id=item.id) }}" class="btn btn-sm btn-warning me-2">Editar</a>
+                        <a href="{{ url_for('bp_miembro.delete', id=item.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('¿Seguro que deseas eliminar a este miembro?')">Eliminar</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4" class="text-center py-4 text-muted">No hay miembros registrados.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

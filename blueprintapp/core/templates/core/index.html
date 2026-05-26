@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-white rounded-3 shadow-sm">
+    <div class="container-fluid py-5 text-center">
+        <h1 class="display-5 fw-bold text-dark">Gestión de Equipo de Trabajo</h1>
+        <p class="col-md-8 mx-auto fs-5 text-muted">
+            Bienvenido al sistema de administración. Selecciona una de las siguientes opciones para gestionar los miembros del equipo o las tareas asignadas.
+        </p>
+        <div class="d-flex justify-content-center gap-3 mt-4">
+            <a href="{{ url_for('bp_miembro.index') }}" class="btn btn-primary btn-lg px-4">
+                 Gestionar Miembros
+            </a>
+            <a href="{{ url_for('bp_tarea.index') }}" class="btn btn-success btn-lg px-4">
+                 Gestionar Tareas
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock%}

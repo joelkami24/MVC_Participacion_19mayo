@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-warning text-dark">
+                <h2 class="h5 mb-0">Editar Tarea</h2>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('bp_tarea.edit', id=tarea.id) }}" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Descripción:</label>
+                        <input type="text" class="form-control" name="descripcion" value="{{ tarea.descripcion }}" required>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input type="checkbox" class="form-check-input" id="completado" name="completado" {% if tarea.completado %}checked{% endif %}>
+                        <label class="form-check-label fw-semibold" for="completado">Marcar como completada</label>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ url_for('bp_tarea.index') }}" class="btn btn-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-warning text-dark fw-semibold">Actualizar Tarea</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

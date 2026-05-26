@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h2 class="h5 mb-0">Crear Miembro</h2>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('bp_miembro.create') }}" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Nombre:</label>
+                        <input type="text" class="form-control" name="nombre" placeholder="Nombre del miembro" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Correo Electrónico:</label>
+                        <input type="email" class="form-control" name="email" placeholder="correo@ejemplo.com" required>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ url_for('bp_miembro.index') }}" class="btn btn-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-success">Guardar Miembro</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
